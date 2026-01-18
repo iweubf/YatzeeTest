@@ -116,7 +116,7 @@
         <h2 style="color:#ff8c00; margin-top:0;">Game Over</h2>
         <p style="font-size:18px;">Final Score:</p>
         <p id="finalScore" style="font-size:36px; font-weight:bold; margin:10px 0;"></p>
-        <button onclick="resetGame()">Play Again</button>
+        <button onclick="restartGame()">Play Again</button>
       </div>
     </div>
 
@@ -245,25 +245,9 @@
       document.getElementById("gameOverModal").style.display = "flex";
     }
 
-    function resetGame() {
-      // reset state
-      dice = Array(5).fill(1);
-      held = Array(5).fill(false);
-      rollsLeft = 3;
-
-      for (const key in used) delete used[key];
-
-      // reset UI
-      document.getElementById("gameOverModal").style.display = "none";
-      rollBtn.disabled = false;
-      rollBtn.textContent = "Roll Dice (3)";
-
-      renderDice();
-      updateTable();
-      updateTotal();
-
-      // start first roll
-      rollDice();
+    function restartGame() {
+      // Hard reload without cache/state issues
+      window.location.href = window.location.pathname;
     }
 
     function resetTurn() {
