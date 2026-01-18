@@ -96,7 +96,7 @@
       color: var(--white);
     }
 
-    td.used {
+    tr.used td {
       background: #d6f5d6;
       cursor: default;
     }
@@ -111,7 +111,7 @@
   <h1>Yahtzee</h1>
 
   <div class="game">
-    <div id="gameOverModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); align-items:center; justify-content:center;">
+    <div id="gameOverModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); align-items:center; justify-content:center; z-index:9999;" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); align-items:center; justify-content:center;">
       <div style="background:white; border:3px solid black; border-radius:14px; padding:30px; text-align:center; max-width:300px;">
         <h2 style="color:#ff8c00; margin-top:0;">Game Over</h2>
         <p style="font-size:18px;">Final Score:</p>
@@ -235,8 +235,9 @@
       totalScoreEl.textContent = total;
 
       if (Object.keys(used).length === categories.length) {
-        endGame(total);
+        setTimeout(() => endGame(total), 200);
       }
+    }
     }
 
     function endGame(score) {
